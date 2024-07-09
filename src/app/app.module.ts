@@ -7,31 +7,21 @@ import { share } from 'rxjs';
 import { SharedModule } from './shared/shared.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CartComponent } from './cart/cart.component';
-import { ProductcardComponent } from './productcard/productcard.component';
-import { ProductdetailsComponent } from './productdetails/productdetails.component';
-import { ProductslistComponent } from './productslist/productslist.component';
-import { WatchlistComponent } from './watchlist/watchlist.component';
-import { OrdercardComponent } from './ordercard/ordercard.component';
-import { OrderdetailsComponent } from './orderdetails/orderdetails.component';
-import { OrderslistComponent } from './orderslist/orderslist.component';
+import { AuthModule } from './auth/auth.module';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    CartComponent,
-    ProductcardComponent,
-    ProductdetailsComponent,
-    ProductslistComponent,
-    WatchlistComponent,
-    OrdercardComponent,
-    OrderdetailsComponent,
-    OrderslistComponent
+    CartComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SharedModule,
+    AuthModule,
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]
