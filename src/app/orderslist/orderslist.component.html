@@ -1,1 +1,21 @@
-<p>orderslist works!</p>
+<div class="container mt-3">
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>Date Placed</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders">
+          <td>{{ order.datePlaced | date }}</td>
+          <td>{{ order.status }}</td>
+          <td>
+            <button class="btn btn-warning btn-sm" (click)="cancelOrder(order.id)">Cancel</button>
+            <a [routerLink]="['/order-detail', order.id]" class="btn btn-primary btn-sm">View</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

@@ -1,1 +1,34 @@
-<p>orderdetails works!</p>
+<!-- order-detail.component.html -->
+<div class="container mt-3">
+    <h2>Order Details</h2>
+    <div *ngIf="order">
+      <p><strong>Order ID:</strong> {{ order.id }}</p>
+      <p><strong>Status:</strong> {{ order.status }}</p>
+      <p><strong>Date Placed:</strong> {{ order.datePlaced | date }}</p>
+  
+      <h3>Items</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Product Name</th>
+            <th>Purchased Price</th>
+            <th>Quantity</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of order.items">
+            <td>{{ item.name }}</td>
+            <td>{{ item.purchased_price | currency:'USD' }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>
+              <a [routerLink]="['/product-detail', item.product_id]" class="btn btn-primary btn-sm">View Product</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <button class="btn btn-warning" (click)="cancelOrder()">Cancel Order</button>
+    </div>
+  </div>
+  

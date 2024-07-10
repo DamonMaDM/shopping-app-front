@@ -1,1 +1,33 @@
-<p>productcard works!</p>
+<div class="card mb-4 d-flex flex-column justify-content-center" style="width: 25rem; min-height: 18rem; border-color: rgb(29, 38, 58)">
+	<div class="card-body">
+		<div class="row d-flex flex-row g-0 p-0 align-items-center justify-content-between">
+			<div class="col-8 p-0">
+				<p class="card-text" *ngIf="alreadyInCart; then tureContent; else falseContent"> </p>
+				<ng-template #tureContent><span [innerHtml]="stockHtmlText"></span></ng-template>
+				<ng-template #falseContent><span [innerHtml]="stockHtmlText"></span></ng-template>
+			</div>
+			<div class="col-1 p-0 text-center">
+				<fa-icon [ngClass]="inWishlist ? 'wishIcon-selected': 'wishIcon'" (click)="inWishlist ? removeFromWishlist() : addToWishlist()" [icon]="heartIcon"></fa-icon>
+			</div>
+		</div>
+		<h6 class="card-title my-2" (click)="sendProductDetails()" data-toggle="tooltip" data-placement="top" [title]="product.name">{{
+			product.name
+		}}</h6>
+		<p class="card-text fw-semibold"
+			>Price: <span class="badge bg-warning">{{ product.retail_price | currency: '':'USD' }}</span></p
+		>
+		<div class="btns row justify-content-around" *ngIf="product.quantity > 0">
+			<button
+				class="col-5"
+				[ngClass]="alreadyInCart ? 'btn btn-danger' : 'btn btn-secondary'"
+				[disabled]="!product.quantity"
+				(click)="alreadyInCart ? removeFromCart() : addToCart()">
+				{{ alreadyInCart ? 'Remove from cart' : 'Add to cart' }}
+			</button>
+			<button class="col-5 btn sysColor" (click)="sendProductDetails()">Details</button>
+		</div>
+		<div *ngIf="!product.quantity" class="row justify-content-around">
+			<button class="col-10 btn sysColor" (click)="sendProductDetails()">Details</button>
+		</div>
+	</div>
+</div>

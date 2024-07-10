@@ -1,0 +1,19 @@
+/* orders-list.component.css */
+.container {
+    padding: 20px;
+  }
+  
+  .table {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .table th, .table td {
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .btn-sm {
+    margin-right: 5px;
+  }
+  
