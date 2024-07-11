@@ -4,6 +4,8 @@ import { LoginformComponent } from './auth/loginform/loginform.component';
 import { RegisterformComponent } from './auth/registerform/registerform.component';
 import { ProductdetailsComponent } from './productdetails/productdetails.component';
 import { CartComponent } from './cart/cart.component';
+import { OrderdetailsComponent } from './orderdetails/orderdetails.component';
+import { OrderslistComponent } from './orderslist/orderslist.component';
 
 const routes: Routes = [
   {
@@ -19,12 +21,20 @@ const routes: Routes = [
     component: RegisterformComponent,
   },
   {
+    path: 'home',
+    component: OrderslistComponent,
+  },
+  {
     path: 'product/:id',
     component: ProductdetailsComponent,
   },
   {
     path: 'cart',
     component: CartComponent,
+  },
+  {
+    path: 'order-detail/:id',
+    component: OrderdetailsComponent,
   }
 
 ];
