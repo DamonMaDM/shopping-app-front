@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Order } from '../interfaces/order';
+import { OrderService } from '../services/order.service';
 
 @Component({
   selector: 'app-orderslist',
@@ -6,18 +8,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./orderslist.component.css']
 })
 export class OrderslistComponent implements OnInit {
-  orders = [
-    { id: 1, datePlaced: new Date(2023, 6, 25), status: 'Shipped' },
-    { id: 2, datePlaced: new Date(2023, 6, 26), status: 'Pending' },
-    { id: 3, datePlaced: new Date(2023, 6, 27), status: 'Cancelled' }
-  ];
-  constructor() { }
+  orders: Order[] = [];
+  constructor(private orderService:OrderService) { }
 
   ngOnInit(): void {
+    this.orderService.getOrders().subscribe(
+      (data: Order[]) => {
+        this.orders = data;
+      },
+      (error) => {
+        console.error('Error fetching orders', error);
+      }
+    );
   }
 
   cancelOrder(id: number): void {
-    console.log('Cancelling order', id);
-    // Add logic to cancel the order
+    this.orderService.cancelOrder(id).subscribe(
+      () => {
+        this.orders = this.orders.filter(order => order.orderId !== id);
+      },
+      (error) => {
+        console.error('Error cancelling order', error);
+      }
+    );
   }
 }

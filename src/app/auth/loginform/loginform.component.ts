@@ -15,6 +15,13 @@ export class LoginformComponent implements OnInit {
   }
 
   formSubmitHandler(form: any) {
-		this.authService.checkAuthentication(true); // User Authentication Guard
+    const val = form.value;
+		this.authService.checkAuthentication(val.loginUsername, val.loginPass)
+    .subscribe(
+      () => {
+          console.log("User is logged in");
+          this.router.navigateByUrl('/');
+      }
+  );
 	}
 }

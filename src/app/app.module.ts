@@ -18,6 +18,8 @@ import { ProductslistComponent } from './productslist/productslist.component';
 import { WatchlistComponent } from './watchlist/watchlist.component';
 import { OrderslistComponent } from './orderslist/orderslist.component';
 import { OrderdetailsComponent } from './orderdetails/orderdetails.component';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { CartitemComponent } from './cartitem/cartitem.component';
 
 
 @NgModule({
@@ -31,6 +33,7 @@ import { OrderdetailsComponent } from './orderdetails/orderdetails.component';
     WatchlistComponent,
     OrderslistComponent,
     OrderdetailsComponent,
+    CartitemComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,7 @@ import { OrderdetailsComponent } from './orderdetails/orderdetails.component';
     HttpClientModule,
 		FontAwesomeModule,
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

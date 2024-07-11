@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registerform',
@@ -9,16 +10,14 @@ import { AuthService } from '../../services/auth.service';
 })
 export class RegisterformComponent implements OnInit {
   registerForm: FormGroup;
-	submitted: boolean = false;
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  submitted: boolean = false;
+  errorMessage:String = '';
+  constructor(private fb: FormBuilder, private authService: AuthService, private router:Router) {
     this.registerForm = this.fb.group(
 			{
-				name: ['', Validators.required],
+				username: ['', Validators.required],
 				emailAdrress: ['', [Validators.required, Validators.email]],
-				// --- OR [Use Pattern]---
-				// emailAdrress: ['', [Validators.required, Validators.pattern(/[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$/)]],
-				username: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9_-]{3,16}$/)]],
-				password: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/)]],
+				password: ['', [Validators.required]],
 				confirmPassword: ['', Validators.required],
 			},
 			{
@@ -30,18 +29,27 @@ export class RegisterformComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  ngDoCheck() {
-		const isDirt = this.registerForm.dirty;
-		if (isDirt) {
-			this.authService.checkRegisteration(false);
-		}
-	}
+//   ngDoCheck() {
+// 		const isDirt = this.registerForm.dirty;
+// 		if (isDirt) {
+// 			this.authService.checkRegisteration(this.registerForm.value.username, this.registerForm.value.emailAdrress, this.registerForm.value.password);
+// 		}
+// 	}
   formSubmitHandler() {
 		this.submitted = true;
 		if (this.registerForm.valid) {
-			alert('Check The Submitted Data In Console');
+			const val = this.registerForm.value;
+			this.authService.checkRegisteration(val.username, val.emailAdrress, val.password)
+			.subscribe(
+				data => {
+					this.router.navigate(['/login']);
+				},
+				error => {
+					this.errorMessage = error;
+				}
+			)
 			// Show The Submitted Data In Console
-			console.table(this.registerForm.value);
+			console.log(this.registerForm.getRawValue);
 		}
 	}
 
