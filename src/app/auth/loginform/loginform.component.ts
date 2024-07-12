@@ -19,9 +19,17 @@ export class LoginformComponent implements OnInit {
 		this.authService.checkAuthentication(val.loginUsername, val.loginPass)
     .subscribe(
       () => {
-          console.log("User is logged in");
-          this.router.navigateByUrl('home');
+        console.log("User is logged in");
+        const currentUser = this.authService.currentUserValue;
+        if (currentUser && currentUser.role === 0) {
+          this.router.navigate(['home']);
+        } else if (currentUser && currentUser.role === 1) {
+          this.router.navigate(['admin/home']);
+        }
+      },
+      error => {
+        console.error("Login failed", error);
       }
-  );
+    );
 	}
 }

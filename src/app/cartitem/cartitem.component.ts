@@ -18,7 +18,7 @@ export class CartitemComponent implements OnInit {
 		name: '',
 		count: 0,
 		price: 0,
-    max: 0
+    	max: 0
 	};
   cartArray: Cartitem[] = [];
 	itemsTotalPrice: number = 0;

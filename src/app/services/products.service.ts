@@ -38,4 +38,12 @@ export class ProductsService {
   getTopThreeMostPopularItems(): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.baseUrl}/popular/3`);
   }
+
+  getTopThreeMostFrequentItems() : Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.baseUrl}/frequent/3`);
+  }
+
+  getTopThreeMostRecentItems() : Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.baseUrl}/recent/3`);
+  }
 }

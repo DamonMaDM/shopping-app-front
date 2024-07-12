@@ -1,1 +1,25 @@
-<p>home works!</p>
+<div class="container mt-5">
+    <app-orderdetails></app-orderdetails>
+    
+    <h2>Top 3 most frequently purchased items</h2>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let product of mostFrequentProducts">
+        <h5>{{ product.name }}</h5>
+        <p>{{ product.description }}</p>
+        <p>Quantity: {{ product.quantity }}</p>
+        <p>Retail Price: {{ product.retail_price | currency:'USD' }}</p>
+        <p>Wholesale Price: {{ product.wholesale_price | currency:'USD' }}</p>
+      </li>
+    </ul>
+    
+    <h2 class="mt-5">Top 3 most recently purchased items</h2>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let product of mostRecentProducts">
+        <h5>{{ product.name }}</h5>
+        <p>{{ product.description }}</p>
+        <p>Quantity: {{ product.quantity }}</p>
+        <p>Retail Price: {{ product.retail_price | currency:'USD' }}</p>
+        <p>Wholesale Price: {{ product.wholesale_price | currency:'USD' }}</p>
+      </li>
+    </ul>
+  </div>
