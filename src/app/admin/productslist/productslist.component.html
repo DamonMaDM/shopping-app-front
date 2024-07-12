@@ -1,0 +1,28 @@
+<div class="container mt-5">
+    <button class="btn btn-primary mb-3" (click)="onCreateNewProduct()">Add New Product</button>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Quantity</th>
+          <th>Retail Price</th>
+          <th>Wholesale Price</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+          <td>{{ product.name }}</td>
+          <td>{{ product.description }}</td>
+          <td>{{ product.quantity }}</td>
+          <td>{{ product.retail_price | currency: '':'USD' }}</td>
+          <td>{{ product.wholesale_price | currency: '':'USD' }}</td>
+          <td>
+            <button class="btn btn-primary me-2" (click)="onView(product.product_id)">View</button>
+            <button class="btn btn-warning" (click)="onEdit(product.product_id)">Edit</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>  

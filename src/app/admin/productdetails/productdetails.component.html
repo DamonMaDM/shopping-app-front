@@ -1,0 +1,30 @@
+<section class="container m-auto d-flex justify-content-center align-items-center">
+	<div class="container mt-5 m-auto">
+		<div class="row d-flex justify-content-center">
+			<div class="col-md-10">
+				<div class="card">
+					<div class="row">
+						<div class="col-md-7 p-2">
+							<div class="product p-4">
+								<div class="mt-4 mb-3">
+									<h5 class="text-uppercase mt-2 mb-3">{{ product.name.substring(0, 25) }}</h5>
+									<div class="price d-flex flex-row align-items-center">
+										<span class="me-2 fw-bold">Retail Price: </span>
+										<span class="act-price badge bg-success"> {{ product.retail_price | currency: '':'USD' }}</span>
+										<span class="me-2 fw-bold">Wholesale Price: </span>
+										<span class="act-price badge bg-success"> {{ product.wholesale_price | currency: '':'USD' }}</span>
+									</div>
+								</div>
+								<p class="about">Description: {{ product.description }}</p>
+								<p class="about badge bg-warning d-block" style="width: fit-content">{{ product.quantity > 0 ? 'In Stock ' + product.quantity : 'Out Of Stock' }}</p>
+                                <div class="cart mt-4 align-items-center">
+									<button class="btn btn-primary" [routerLink]="['admin/editproduct', product.product_id]">Edit</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Orderdetail } from '../interfaces/orderdetail';
 import { ActivatedRoute, Router } from '@angular/router';
-import { OrderService } from '../services/order.service';
+import { Orderdetail } from 'src/app/interfaces/orderdetail';
+import { OrderService } from 'src/app/services/order.service';
 
 @Component({
   selector: 'app-orderdetails',
@@ -9,6 +9,7 @@ import { OrderService } from '../services/order.service';
   styleUrls: ['./orderdetails.component.css']
 })
 export class OrderdetailsComponent implements OnInit {
+
   order: Orderdetail | null = null;
   constructor(private router:Router, private orderService : OrderService, private route : ActivatedRoute) { }
 
@@ -32,7 +33,7 @@ export class OrderdetailsComponent implements OnInit {
     if (this.order) {
       this.orderService.cancelOrder(this.order.orderId).subscribe(
         () => {
-          this.router.navigate(['/order-detail', this.order?.orderId]); // Redirect to orders list after cancellation
+          this.router.navigate(['admin/orderdetail', this.order?.orderId]); // Redirect to orders list after cancellation
         },
         (error) => {
           console.error('Error cancelling order', error);
@@ -40,4 +41,18 @@ export class OrderdetailsComponent implements OnInit {
       );
     }
   }
+
+  completeOrder(){
+    if (this.order) {
+      this.orderService.completeOrder(this.order.orderId).subscribe(
+        () => {
+          this.router.navigate(['admin/orderdetail', this.order?.orderId]);
+        },
+        (error) => {
+          console.error('Error completing order', error);
+        }
+      );
+    }
+  }
+
 }

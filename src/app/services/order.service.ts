@@ -17,8 +17,8 @@ export class OrderService {
     return this.http.get<Order[]>(`${this.baseUrl}/orders/all`);
   }
 
-  cancelOrder(orderId: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/orders/${orderId}/cancel`);
+  cancelOrder(orderId: number): Observable<any> {
+    return this.http.patch(`${this.baseUrl}/orders/${orderId}/cancel`, {});
   }
 
   getOrderDetail(orderId: number): Observable<Orderdetail> {
@@ -28,4 +28,9 @@ export class OrderService {
   createOrder(order: Ordercreationrequest): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/orders`, order);
   }
+
+  completeOrder(orderId: number) : Observable<any> {
+    return this.http.patch(`${this.baseUrl}/orders/${orderId}/complete`, {});
+  }
+
 }

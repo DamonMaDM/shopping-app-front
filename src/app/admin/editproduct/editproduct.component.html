@@ -1,1 +1,40 @@
-<p>editproduct works!</p>
+<div class="container mt-5">
+    <h2>Edit Product</h2>
+    <form [formGroup]="editProductForm" (ngSubmit)="onSubmit()">
+      <div *ngIf="product">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" class="form-control" [value]="product.name" disabled>
+        </div>
+  
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea id="description" formControlName="description" class="form-control"></textarea>
+        </div>
+  
+        <div class="form-group">
+          <label for="wholesalePrice">Wholesale Price</label>
+          <input type="number" id="wholesalePrice" class="form-control" [value]="product.wholesale_price" disabled>
+        </div>
+  
+        <div class="form-group">
+          <label for="retailPrice">Retail Price</label>
+          <input type="number" id="retailPrice" formControlName="retailPrice" class="form-control" [ngClass]="{ 'is-invalid': editProductForm.get('retailPrice')?.invalid && editProductForm.get('retailPrice')?.touched }">
+          <div *ngIf="editProductForm.get('retailPrice')?.invalid && editProductForm.get('retailPrice')?.touched" class="invalid-feedback">
+            Retail Price is required.
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="quantity">Quantity</label>
+          <input type="number" id="quantity" formControlName="quantity" class="form-control" [ngClass]="{ 'is-invalid': editProductForm.get('quantity')?.invalid && editProductForm.get('quantity')?.touched }">
+          <div *ngIf="editProductForm.get('quantity')?.invalid && editProductForm.get('quantity')?.touched" class="invalid-feedback">
+            Quantity is required.
+          </div>
+        </div>
+  
+        <button type="submit" class="btn btn-primary" [disabled]="editProductForm.invalid">Update Product</button>
+      </div>
+    </form>
+  </div>
+  

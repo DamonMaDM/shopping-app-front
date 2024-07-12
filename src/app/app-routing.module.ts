@@ -6,6 +6,9 @@ import { ProductdetailsComponent } from './productdetails/productdetails.compone
 import { CartComponent } from './cart/cart.component';
 import { OrderdetailsComponent } from './orderdetails/orderdetails.component';
 import { OrderslistComponent } from './orderslist/orderslist.component';
+import { AuthGuard } from './guards/auth.guard';
+import { AdminModule } from './admin/admin.module';
+import { ProductslistComponent } from './productslist/productslist.component';
 
 const routes: Routes = [
   {
@@ -23,18 +26,33 @@ const routes: Routes = [
   {
     path: 'home',
     component: OrderslistComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'products',
+    component: ProductslistComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'product/:id',
     component: ProductdetailsComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'cart',
     component: CartComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'order-detail/:id',
     component: OrderdetailsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin/home',
+    loadChildren: () =>
+      import('./admin/admin.module').then((m) => m.AdminModule),
+    canActivate: [AuthGuard],
   }
 
 ];

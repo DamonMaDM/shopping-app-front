@@ -2,8 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Product } from '../interfaces/product';
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import { Cartitem } from '../interfaces/cartitem';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from '../services/cart.service';
+import { ProductsService } from '../services/products.service';
 
 @Component({
   selector: 'app-productdetails',
@@ -11,20 +12,31 @@ import { CartService } from '../services/cart.service';
   styleUrls: ['./productdetails.component.css']
 })
 export class ProductdetailsComponent implements OnInit {
-  @Input() product: Product = {
+  product: Product = {
 		product_id: 0,
-    	description: '',
+    description: '',
 		name: '',
 		quantity: 0,
 		retail_price: 0,
 		wholesale_price: 0,
 	};
-  	cartIcon = faCartPlus;
+  cartIcon = faCartPlus;
 	alreadyInCart: boolean = false;
 	cartArray: Cartitem[] = [];
-  constructor(private router: Router, private cartService:CartService) { }
+  constructor(
+    private router: Router, 
+    private cartService:CartService, 
+    private route: ActivatedRoute, 
+    private productService : ProductsService) { 
+    const params = this.route.snapshot.params;
+		this.product.product_id = params['id'];
+  }
 
   ngOnInit(): void {
+    this.productService.getProductdetials(this.product.product_id).subscribe((data: any) => {
+			this.product = data;
+		});
+
 	this.cartService.cartArray.subscribe((arr: any) => (this.cartArray = arr));
     if (this.cartArray.some((item: any) => item.id === this.product.product_id)) {
 			console.log('incart from product');

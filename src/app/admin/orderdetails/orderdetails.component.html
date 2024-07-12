@@ -1,4 +1,3 @@
-<!-- order-detail.component.html -->
 <div class="container mt-3">
     <h2>Order Details</h2>
     <div *ngIf="order">
@@ -22,13 +21,16 @@
             <td>{{ item.purchasedPrice | currency:'USD' }}</td>
             <td>{{ item.quantity }}</td>
             <td>
-              <a [routerLink]="['/product', item.productId]" class="btn btn-primary btn-sm">View Product</a>
+              <a [routerLink]="['admin/product', item.productId]" class="btn btn-primary btn-sm">View Product</a>
             </td>
           </tr>
         </tbody>
       </table>
   
-      <button *ngIf="orderStatusCanBeChanged()" class="btn btn-warning" (click)="cancelOrder()">Cancel Order</button>
+      <button *ngIf="orderStatusCanBeChanged()"  class="btn btn-warning" (click)="cancelOrder()">Cancel Order</button>
+      <button *ngIf="orderStatusCanBeChanged()"  class="btn btn-warning" (click)="completeOrder()">Complete Order</button>
+
     </div>
   </div>
   
+

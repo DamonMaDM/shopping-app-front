@@ -1,1 +1,43 @@
-<p>createproduct works!</p>
+<div class="container mt-5">
+    <h2>Create New Product</h2>
+    <form [formGroup]="fBuilder" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': fBuilder.get('name')?.invalid && fBuilder.get('name')?.touched }">
+        <div *ngIf="fBuilder.get('name')?.invalid && fBuilder.get('name')?.touched" class="invalid-feedback">
+          Name is required.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" formControlName="description" class="form-control"></textarea>
+      </div>
+  
+      <div class="form-group">
+        <label for="wholesalePrice">Wholesale Price</label>
+        <input type="number" id="wholesalePrice" formControlName="wholesalePrice" class="form-control" [ngClass]="{ 'is-invalid': fBuilder.get('wholesalePrice')?.invalid && fBuilder.get('wholesalePrice')?.touched }">
+        <div *ngIf="fBuilder.get('wholesalePrice')?.invalid && fBuilder.get('wholesalePrice')?.touched" class="invalid-feedback">
+          Wholesale Price is required.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="retailPrice">Retail Price</label>
+        <input type="number" id="retailPrice" formControlName="retailPrice" class="form-control" [ngClass]="{ 'is-invalid': fBuilder.get('retailPrice')?.invalid && fBuilder.get('retailPrice')?.touched }">
+        <div *ngIf="fBuilder.get('retailPrice')?.invalid && fBuilder.get('retailPrice')?.touched" class="invalid-feedback">
+          Retail Price is required.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="quantity">Quantity</label>
+        <input type="number" id="quantity" formControlName="quantity" class="form-control" [ngClass]="{ 'is-invalid': fBuilder.get('quantity')?.invalid && fBuilder.get('quantity')?.touched }">
+        <div *ngIf="fBuilder.get('quantity')?.invalid && fBuilder.get('quantity')?.touched" class="invalid-feedback">
+          Quantity is required.
+        </div>
+      </div>
+  
+      <button type="submit" class="btn btn-primary" [disabled]="fBuilder.invalid">Create Product</button>
+    </form>
+  </div>

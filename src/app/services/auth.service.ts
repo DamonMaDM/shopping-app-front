@@ -16,7 +16,7 @@ export class AuthService {
         this.currentUser = this.userSubject.asObservable();
 	}
 
-	public get currentUserValue(): any {
+	public get currentUserValue(): User | null {
 		return this.userSubject.value;
 	  }
 
@@ -27,6 +27,7 @@ export class AuthService {
 			return user;
 		  }));
 	}
+
 
 	logout():void{
 		localStorage.removeItem('currentUser');

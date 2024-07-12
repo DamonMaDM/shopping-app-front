@@ -20,6 +20,7 @@ import { OrderslistComponent } from './orderslist/orderslist.component';
 import { OrderdetailsComponent } from './orderdetails/orderdetails.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { CartitemComponent } from './cartitem/cartitem.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { CartitemComponent } from './cartitem/cartitem.component';
     OrderslistComponent,
     OrderdetailsComponent,
     CartitemComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
