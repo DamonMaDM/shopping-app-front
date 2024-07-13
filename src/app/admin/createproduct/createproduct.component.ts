@@ -28,7 +28,7 @@ export class CreateproductComponent implements OnInit {
       this.productService.createProduct(this.fBuilder.value).subscribe(
         response => {
           console.log('Product created successfully', response);
-          this.router.navigate(['admin/products']); // Navigate to the products list page after successful creation
+          this.router.navigate(['/admin/products']); // Navigate to the products list page after successful creation
         },
         error => {
           console.error('Error creating product', error);

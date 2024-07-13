@@ -8,9 +8,9 @@
 							<div class="product p-4">
 								<div class="mt-4 mb-3">
 									<h5 class="text-uppercase mt-2 mb-3">{{ product.name.substring(0, 25) }}</h5>
-									<div class="price d-flex flex-row align-items-center"
-										><span class="me-2 fw-bold">Price: </span>
-										<span class="act-price badge bg-success"> {{ product.retail_price | currency: '':'USD' }}</span>
+									<div class="price d-flex flex-row align-items-center">
+										<span class="me-2 fw-bold">Price: </span>
+										<span class="act-price badge bg-success"> {{ product.retailPrice | currency:'USD':'$' }}</span>
 									</div>
 								</div>
 								<p class="about">Description: {{ product.description }}</p>

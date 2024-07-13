@@ -7,10 +7,10 @@ import { Cartitem } from '../interfaces/cartitem';
 })
 export class CartService {
   private cartContainer = new BehaviorSubject<Cartitem[]>([]);
-	cartArray:Observable<Cartitem[]> = this.cartContainer.asObservable();
+  cartArray:Observable<Cartitem[]> = this.cartContainer.asObservable();
 
   private carttotalPrice = new BehaviorSubject<number>(0);
-	carttotal:Observable<number> = this.carttotalPrice.asObservable();
+  carttotal:Observable<number> = this.carttotalPrice.asObservable();
 
   constructor() { }
 
@@ -25,6 +25,4 @@ export class CartService {
 	updateTotalPrice(updatedPrice: number) {
 		this.carttotalPrice.next(updatedPrice);
 	}
-
-	
 }

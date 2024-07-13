@@ -32,18 +32,18 @@ export class ProductsService {
   }
 
   getTopThreeMostProfitableItems(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.baseUrl}/profit/3`);
+    return this.http.get<Product[]>(`${this.baseUrl}/products/profit/3`);
   } 
 
   getTopThreeMostPopularItems(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.baseUrl}/popular/3`);
+    return this.http.get<Product[]>(`${this.baseUrl}/products/popular/3`);
   }
 
   getTopThreeMostFrequentItems() : Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.baseUrl}/frequent/3`);
+    return this.http.get<Product[]>(`${this.baseUrl}/products/frequent/3`);
   }
 
   getTopThreeMostRecentItems() : Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.baseUrl}/recent/3`);
+    return this.http.get<Product[]>(`${this.baseUrl}/products/recent/3`);
   }
 }

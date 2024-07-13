@@ -9,19 +9,26 @@ import { AuthGuard } from './guards/auth.guard';
 import { ProductslistComponent } from './productslist/productslist.component';
 import { HomeComponent } from './home/home.component';
 import { AdminGuard } from './guards/admin.guard';
+import { LoginregisterGuard } from './guards/loginregister.guard';
+import { WatchlistComponent } from './watchlist/watchlist.component';
 
 const routes: Routes = [
   {
     path: '',
     component: LoginformComponent,
+    canActivate: [LoginregisterGuard],
   },
   {
     path: 'login',
     component: LoginformComponent,
+    canActivate: [LoginregisterGuard],
+
   },
   {
-    path: 'regiester',
+    path: 'register',
     component: RegisterformComponent,
+    canActivate: [LoginregisterGuard],
+
   },
   {
     path: 'home',
@@ -49,10 +56,19 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'admin/home',
+    path: 'watchlist',
+    component: WatchlistComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin',
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
     canActivate: [AdminGuard],
+  },
+  {
+    path: '**',
+    component: LoginformComponent,
   }
 
 ];

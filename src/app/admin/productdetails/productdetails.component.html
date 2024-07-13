@@ -10,15 +10,15 @@
 									<h5 class="text-uppercase mt-2 mb-3">{{ product.name.substring(0, 25) }}</h5>
 									<div class="price d-flex flex-row align-items-center">
 										<span class="me-2 fw-bold">Retail Price: </span>
-										<span class="act-price badge bg-success"> {{ product.retail_price | currency: '':'USD' }}</span>
+										<span class="act-price badge bg-success"> {{ product.retailPrice | currency: '':'USD' }}</span>
 										<span class="me-2 fw-bold">Wholesale Price: </span>
-										<span class="act-price badge bg-success"> {{ product.wholesale_price | currency: '':'USD' }}</span>
+										<span class="act-price badge bg-success"> {{ product.wholesalePrice | currency: '':'USD' }}</span>
 									</div>
 								</div>
 								<p class="about">Description: {{ product.description }}</p>
 								<p class="about badge bg-warning d-block" style="width: fit-content">{{ product.quantity > 0 ? 'In Stock ' + product.quantity : 'Out Of Stock' }}</p>
                                 <div class="cart mt-4 align-items-center">
-									<button class="btn btn-primary" [routerLink]="['admin/editproduct', product.product_id]">Edit</button>
+									<button class="btn btn-primary" [routerLink]="['/admin/editproduct', product.productId]">Edit</button>
 								</div>
 							</div>
 						</div>

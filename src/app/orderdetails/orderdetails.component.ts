@@ -32,7 +32,7 @@ export class OrderdetailsComponent implements OnInit {
     if (this.order) {
       this.orderService.cancelOrder(this.order.orderId).subscribe(
         () => {
-          this.router.navigate(['/order-detail', this.order?.orderId]); // Redirect to orders list after cancellation
+          this.router.navigate(['/home']); // Redirect to orders list after cancellation
         },
         (error) => {
           console.error('Error cancelling order', error);

@@ -33,7 +33,7 @@ export class OrderdetailsComponent implements OnInit {
     if (this.order) {
       this.orderService.cancelOrder(this.order.orderId).subscribe(
         () => {
-          this.router.navigate(['admin/orderdetail', this.order?.orderId]); // Redirect to orders list after cancellation
+          this.router.navigate(['/admin/home']);
         },
         (error) => {
           console.error('Error cancelling order', error);
@@ -46,7 +46,7 @@ export class OrderdetailsComponent implements OnInit {
     if (this.order) {
       this.orderService.completeOrder(this.order.orderId).subscribe(
         () => {
-          this.router.navigate(['admin/orderdetail', this.order?.orderId]);
+          this.router.navigate(['/admin/home']);
         },
         (error) => {
           console.error('Error completing order', error);

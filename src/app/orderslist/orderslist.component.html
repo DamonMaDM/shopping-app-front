@@ -12,7 +12,7 @@
           <td>{{ order.datePlaced | date }}</td>
           <td>{{ order.orderStatus }}</td>
           <td>
-            <button class="btn btn-warning btn-sm" (click)="cancelOrder(order.orderId)">Cancel</button>
+            <button *ngIf="order.orderStatus === 'Processing'" class="btn btn-warning btn-sm" (click)="cancelOrder(order.orderId)">Cancel</button>
             <a [routerLink]="['/order-detail', order.orderId]" class="btn btn-primary btn-sm">View</a>
           </td>
         </tr>

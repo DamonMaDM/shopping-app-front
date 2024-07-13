@@ -28,10 +28,10 @@ export class ProductslistComponent implements OnInit {
   }
 
   onView(productId: number): void {
-    this.router.navigate(['/product', productId]);
+    this.router.navigate(['/admin/product', productId]);
   }
 
   onCreateNewProduct(): void {
-    this.router.navigate(['/createnewproduct']);
+    this.router.navigate(['/admin/createnewproduct']);
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Order } from '../interfaces/order';
 import { OrderService } from '../services/order.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-orderslist',
@@ -9,7 +10,7 @@ import { OrderService } from '../services/order.service';
 })
 export class OrderslistComponent implements OnInit {
   orders: Order[] = [];
-  constructor(private orderService:OrderService) { }
+  constructor(private orderService:OrderService, private router : Router) { }
 
   ngOnInit(): void {
     this.orderService.getOrders().subscribe(
@@ -25,7 +26,7 @@ export class OrderslistComponent implements OnInit {
   cancelOrder(id: number): void {
     this.orderService.cancelOrder(id).subscribe(
       () => {
-        this.orders = this.orders.filter(order => order.orderId !== id);
+        this.ngOnInit();
       },
       (error) => {
         console.error('Error cancelling order', error);

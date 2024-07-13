@@ -14,6 +14,7 @@ export class OrderService {
   constructor(private http:HttpClient) { }
 
   getOrders() : Observable<Order[]>{
+    console.log('running getOrdsers()');
     return this.http.get<Order[]>(`${this.baseUrl}/orders/all`);
   }
 

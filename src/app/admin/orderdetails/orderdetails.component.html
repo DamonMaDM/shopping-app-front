@@ -21,7 +21,7 @@
             <td>{{ item.purchasedPrice | currency:'USD' }}</td>
             <td>{{ item.quantity }}</td>
             <td>
-              <a [routerLink]="['admin/product', item.productId]" class="btn btn-primary btn-sm">View Product</a>
+              <a [routerLink]="['/admin/product', item.productId]" class="btn btn-primary btn-sm">View Product</a>
             </td>
           </tr>
         </tbody>

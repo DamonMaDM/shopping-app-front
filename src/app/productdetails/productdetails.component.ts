@@ -13,12 +13,12 @@ import { ProductsService } from '../services/products.service';
 })
 export class ProductdetailsComponent implements OnInit {
   product: Product = {
-		product_id: 0,
+		productId: 0,
     description: '',
 		name: '',
 		quantity: 0,
-		retail_price: 0,
-		wholesale_price: 0,
+		retailPrice: 0,
+		wholesalePrice: 0,
 	};
   cartIcon = faCartPlus;
 	alreadyInCart: boolean = false;
@@ -29,28 +29,28 @@ export class ProductdetailsComponent implements OnInit {
     private route: ActivatedRoute, 
     private productService : ProductsService) { 
     const params = this.route.snapshot.params;
-		this.product.product_id = params['id'];
+		this.product.productId = params['id'];
   }
 
   ngOnInit(): void {
-    this.productService.getProductdetials(this.product.product_id).subscribe((data: any) => {
+    this.productService.getProductdetials(this.product.productId).subscribe((data: any) => {
 			this.product = data;
 		});
 
-	this.cartService.cartArray.subscribe((arr: any) => (this.cartArray = arr));
-    if (this.cartArray.some((item: any) => item.id === this.product.product_id)) {
-			console.log('incart from product');
-			this.alreadyInCart = true;
-	}
+    this.cartService.cartArray.subscribe((arr) => (this.cartArray = arr));
+    if (this.cartArray.some((item: Cartitem) => item.product_id == this.product.productId)) {
+      console.log('incart from product');
+      this.alreadyInCart = true;
+    }
   }
 
   addToCart(): void {
 	this.alreadyInCart = true;
     const newCartItem: Cartitem = {
-      product_id: this.product.product_id,
+      product_id: this.product.productId,
       name: this.product.name,
       count: 1,
-      price: this.product.retail_price,
+      price: this.product.retailPrice,
       max: this.product.quantity
     };
     this.cartArray.push(newCartItem);
@@ -65,7 +65,7 @@ export class ProductdetailsComponent implements OnInit {
 
   removeFromCart(): void {
 	this.alreadyInCart = false;
-    this.cartArray = this.cartArray.filter((item: Cartitem) => item.product_id !== this.product.product_id);
+    this.cartArray = this.cartArray.filter((item: Cartitem) => item.product_id !== this.product.productId);
 	this.cartService.updateCart(this.cartArray);
     this.updateTotalPrice();
   }

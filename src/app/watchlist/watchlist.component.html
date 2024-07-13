@@ -1,38 +1,42 @@
-<div class="wishlist" [ngSwitch]="true">
+<div class="wishlist">
 	<div class="d-flex flex-row align-items-center justify-content-between pe-2">
-		<h3 class="sysColor-text text-uppercase fw-bold">Wishlist</h3>
-		<p style="color: gold" class="pt-3">{{ wishList.itemsList.length }} Products</p>
+	  <h3 class="sysColor-text text-uppercase fw-bold">Watchlist</h3>
+	  <p style="color: gold" class="pt-3">{{ watchlist.length }} Products</p>
 	</div>
-	<div *ngSwitchCase="wishList.itemsList.length !== 0">
-		<div *ngFor="let wishItem of wishList.itemsList">
-			<!-- Item-->
-			<div class="cart-item d-md-flex justify-content-between"
-				><span class="remove-item"
-					><fa-icon (click)="removeFromWishlist(wishItem.id)" [icon]="removeIcon" style="color: rgb(57, 57, 57); cursor: pointer"></fa-icon
-				></span>
-				<div class="px-3 my-3">
-					<div class="cart-item-product">
-						<div class="cart-item-product-thumb bg-light rounded-4 overflow-hidden"><img [src]="wishItem.image" alt="Product" /></div>
-						<div class="cart-item-product-info">
-							<h6 class="card-title mt-2" (click)="goToDetails(wishItem.id)" data-toggle="tooltip" data-placement="top" [title]="wishItem.name"
-								>{{ wishItem.name.substr(0, 14) }} ...</h6
-							>
-							<div class="text-lg text-body font-weight-medium pb-1">{{ wishItem.price | currency: '':'EGP':'':'fr' }}</div
-							><span
-								>Availability: <span class="text-secondary font-weight-bold">{{ wishItem.count }}</span></span
-							>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Item-->
-		</div>
+	<div *ngIf="watchlist.length > 0; else emptyList">
+	  <table class="table table-striped">
+		<thead>
+		  <tr>
+			<th scope="col">Name</th>
+			<th scope="col">Description</th>
+			<th scope="col">Retail Price</th>
+			<th scope="col">Quantity</th>
+			<th scope="col">Actions</th>
+		  </tr>
+		</thead>
+		<tbody>
+		  <tr *ngFor="let wishItem of watchlist">
+			<td (click)="goToDetails(wishItem.productId)" style="cursor: pointer;">
+			  {{ wishItem.name.substr(0, 14) }} ...
+			</td>
+			<td>{{ wishItem.description }}</td>
+			<td>{{ wishItem.retailPrice | currency: 'USD' }}</td>
+			<td>{{ wishItem.quantity }}</td>
+			<td>
+			  <button class="btn btn-danger btn-sm" (click)="removeFromWishlist(wishItem.productId)">
+				<fa-icon [icon]="removeIcon"></fa-icon> Delete
+			  </button>
+			</td>
+		  </tr>
+		</tbody>
+	  </table>
 	</div>
-	<!--Empty List-->
-	<div class="d-flex flex-column justify-content-center align-items-center mt-5" *ngSwitchCase="wishList.itemsList.length === 0">
-		<h4 style="color: rgb(232, 69, 96); font-style: italic; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"
-			>Wishlist is Empty!</h4>
-	</div>
-	<!--Empty List-->
-</div>
-
+	<ng-template #emptyList>
+	  <div class="d-flex flex-column justify-content-center align-items-center mt-5">
+		<h4 style="color: rgb(232, 69, 96); font-style: italic; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
+		  Wishlist is Empty!
+		</h4>
+	  </div>
+	</ng-template>
+  </div>
+  

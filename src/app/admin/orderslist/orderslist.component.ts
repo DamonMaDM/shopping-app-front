@@ -27,7 +27,7 @@ export class OrderslistComponent implements OnInit {
   cancelOrder(id: number): void {
     this.orderService.cancelOrder(id).subscribe(
       () => {
-        this.router.navigate(['admin/home']);
+        this.ngOnInit();
       },
       (error) => {
         console.error('Error cancelling order', error);
@@ -38,7 +38,7 @@ export class OrderslistComponent implements OnInit {
   completeOrder(id: number){
     this.orderService.completeOrder(id).subscribe(
       () => {
-        this.router.navigate(['admin/home']);
+        this.ngOnInit();
       },
       (error) => {
         console.error('Error Completing order', error);

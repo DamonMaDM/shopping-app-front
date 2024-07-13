@@ -1,5 +1,5 @@
 <div class="container mt-5">
-    <app-orderdetails></app-orderdetails>
+    <app-orderslist></app-orderslist>
     
     <h2>Top 3 most frequently purchased items</h2>
     <ul class="list-group">
@@ -7,8 +7,6 @@
         <h5>{{ product.name }}</h5>
         <p>{{ product.description }}</p>
         <p>Quantity: {{ product.quantity }}</p>
-        <p>Retail Price: {{ product.retail_price | currency:'USD' }}</p>
-        <p>Wholesale Price: {{ product.wholesale_price | currency:'USD' }}</p>
       </li>
     </ul>
     
@@ -18,8 +16,6 @@
         <h5>{{ product.name }}</h5>
         <p>{{ product.description }}</p>
         <p>Quantity: {{ product.quantity }}</p>
-        <p>Retail Price: {{ product.retail_price | currency:'USD' }}</p>
-        <p>Wholesale Price: {{ product.wholesale_price | currency:'USD' }}</p>
       </li>
     </ul>
   </div>

@@ -10,12 +10,12 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class ProductdetailsComponent implements OnInit {
   product: Product = {
-		product_id: 0,
+		productId: 0,
     description: '',
 		name: '',
 		quantity: 0,
-		retail_price: 0,
-		wholesale_price: 0,
+		retailPrice: 0,
+		wholesalePrice: 0,
 	};
   constructor(private route: ActivatedRoute, private productService: ProductsService) { }
 

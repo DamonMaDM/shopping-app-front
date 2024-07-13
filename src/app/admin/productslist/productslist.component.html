@@ -16,11 +16,11 @@
           <td>{{ product.name }}</td>
           <td>{{ product.description }}</td>
           <td>{{ product.quantity }}</td>
-          <td>{{ product.retail_price | currency: '':'USD' }}</td>
-          <td>{{ product.wholesale_price | currency: '':'USD' }}</td>
+          <td>{{ product.retailPrice | currency: '':'USD' }}</td>
+          <td>{{ product.wholesalePrice | currency: '':'USD' }}</td>
           <td>
-            <button class="btn btn-primary me-2" (click)="onView(product.product_id)">View</button>
-            <button class="btn btn-warning" (click)="onEdit(product.product_id)">Edit</button>
+            <button class="btn btn-primary me-2" (click)="onView(product.productId)">View</button>
+            <button class="btn btn-warning" (click)="onEdit(product.productId)">Edit</button>
           </td>
         </tr>
       </tbody>

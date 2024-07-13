@@ -28,7 +28,7 @@ export class EditproductComponent implements OnInit {
         this.editProductForm.patchValue({
           description: product.description,
           quantity: product.quantity,
-          retailPrice: product.retail_price
+          retailPrice: product.retailPrice
         });
       },
       error => {
@@ -43,14 +43,14 @@ export class EditproductComponent implements OnInit {
         name: this.product.name,
         description: this.editProductForm.value.description,
         quantity: this.editProductForm.value.quantity,
-        retail_price: this.editProductForm.value.retailPrice,
-        wholesale_price: this.product.wholesale_price,
+        retailPrice: this.editProductForm.value.retailPrice,
+        wholesalePrice: this.product.wholesalePrice,
       };
 
-      this.productService.updateProduct(this.product.product_id, updatedProduct).subscribe(
+      this.productService.updateProduct(this.product.productId, updatedProduct).subscribe(
         response => {
           console.log('Product updated successfully', response);
-          this.router.navigate(['/products']); // Navigate to the products list page after successful update
+          this.router.navigate(['/admin/products']); // Navigate to the products list page after successful update
         },
         error => {
           console.error('Error updating product', error);

@@ -12,7 +12,7 @@ import { CartService } from '../services/cart.service';
 export class CartitemComponent implements OnInit {
   trashIcon = faTrash;
   decIcon = faMinusCircle;
-	incIcon = faPlusCircle;
+  incIcon = faPlusCircle;
   @Input() item: Cartitem = {
 		product_id: 0,
 		name: '',
@@ -21,38 +21,35 @@ export class CartitemComponent implements OnInit {
     	max: 0
 	};
   cartArray: Cartitem[] = [];
-	itemsTotalPrice: number = 0;
+  itemsTotalPrice: number = 0;
 
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
-		this.cartService.cartArray.subscribe((arr) => (this.cartArray = arr));
+	this.cartService.cartArray.subscribe((arr) => (this.cartArray = arr));
+	this.cartService.carttotal.subscribe((total) => this.itemsTotalPrice = total);
   }
 
   increaseCounter() {
-		this.item.count += 1;
-		this.cartService.carttotal.subscribe((val) => (this.itemsTotalPrice = val));
-		this.itemsTotalPrice += +this.item.price;
-		this.cartService.updateTotalPrice(this.itemsTotalPrice);
-    const existingCartItem = this.cartArray.find(item => item.product_id === this.item.product_id);
-    if (existingCartItem) {
-      existingCartItem.count += 1;
-      this.cartService.updateCart(this.cartArray);
-    }
-	}
+	if (this.item.max === this.item.count) return;
+	this.item.count += 1;
+	this.cartService.carttotal.subscribe((val) => (this.itemsTotalPrice = val));
+	this.itemsTotalPrice += +this.item.price;
+	this.cartService.updateTotalPrice(this.itemsTotalPrice);
+	const existingCartItem = this.cartArray.find(item => item.product_id === this.item.product_id);
+    console.log(existingCartItem?.count);
+  }
 
 
   decreaseCounter() {
-		this.item.count -= 1;
-		this.cartService.carttotal.subscribe((val) => (this.itemsTotalPrice = val));
-		this.itemsTotalPrice -= +this.item.price;
-		this.cartService.updateTotalPrice(this.itemsTotalPrice);
+	if (this.item.count === 1) return;
+	this.item.count -= 1;
+	this.cartService.carttotal.subscribe((val) => (this.itemsTotalPrice = val));
+	this.itemsTotalPrice -= +this.item.price;
+	this.cartService.updateTotalPrice(this.itemsTotalPrice);
     const existingCartItem = this.cartArray.find(item => item.product_id === this.item.product_id);
-    if (existingCartItem) {
-      existingCartItem.count -= 1;
-      this.cartService.updateCart(this.cartArray);
-    }
-	}
+    console.log(existingCartItem?.count);
+  }
 
   sendCartUpdate() {
 		this.cartArray = this.cartArray.filter((item: Cartitem) => item.product_id !== this.item.product_id);
@@ -62,11 +59,11 @@ export class CartitemComponent implements OnInit {
 	}
 
   stockToastr() {
-		alert('no less than 1');
-	}
+	alert('out of stock');
+  }
 
 	limitToastr() {
-		alert('out of stock');
+		alert('no less than 1');
 	}
 
 }
